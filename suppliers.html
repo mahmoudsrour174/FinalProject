@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pharmacy/suppliers</title>
+</head>
+<style>
+  body { font-family: Arial, sans-serif; margin:0; padding:0; }
+header, footer { background:#2e7d32; color:white; text-align:center; padding:10px; }
+aside { width:180px; background:#f0f0f0; float:left; height:100vh; padding:10px; }
+aside nav a { display:block; padding:6px; margin:4px 0; text-decoration:none; color:#2e7d32; }
+main { margin-left:200px; padding:15px; }
+h2 { color:#f57f17; }
+form label { display:inline-block; width:120px; font-weight:bold; }
+input, textarea, button { margin:5px 0; padding:5px; }
+table { width:100%; border-collapse:collapse; margin-top:10px; }
+th, td { border:1px solid #ccc; padding:6px; text-align:left; }
+button { background:#2e7d32; color:white; border:none; padding:6px 12px; cursor:pointer; }
+button:hover { background:#1b5e20; }
+
+</style>
+<body>
+       <header>
+        <h1>Pharmacy Management System</h1>
+    </header>
+   <aside>
+  <nav>
+    <a href="drugs.html">Drugs</a>
+    <a href="suppliers.html">Suppliers</a>
+    <a href="employees.html">Employees</a>
+    <a href="invoices.html">Invoices</a>
+    <a href="patients.html">Patients</a>
+    <a href="diseases.html">Diseases</a>
+    <a href="insurance.html">Insurance</a>
+  </nav>
+</aside>
+<main>
+
+    <section id="supplier">
+      <h2>Suppliers</h2>
+      <form action="addSupplier.php" method="post">
+        <label>Company Name</label><input type="text" name="company_name"><br><br>
+        <label>Phone</label><input type="text" name="supplier_phone"><br><br>
+        <button type="submit">Add Supplier</button>
+      </form>
+      <h3>Supplier List</h3>
+      <table>
+        <thead>
+          <tr><th>Company Name</th><th>Phone</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    </main>
+  <footer>
+    <p>&copy; 2026 myPharmacy.</p>
+  </footer>
+</body>
+</html>
+<script>
+document.querySelector("#supplier form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const table = document.querySelector("#supplier table tbody");
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${this.company_name.value}</td>
+    <td>${this.supplier_phone.value}</td>
+  `;
+  table.appendChild(row);
+  this.reset();
+});
+</script>
