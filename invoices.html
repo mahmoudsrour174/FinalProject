@@ -6,7 +6,7 @@
     <title>pharmacy/invoice</title>
 </head>
 <style>
-  body { font-family: Arial, sans-serif; margin:0; padding:0; }
+  body {  margin:0; padding:0; }
 header, footer { background:#2e7d32; color:white; text-align:center; padding:10px; }
 aside { width:180px; background:#f0f0f0; float:left; height:100vh; padding:10px; }
 aside nav a { display:block; padding:6px; margin:4px 0; text-decoration:none; color:#2e7d32; }
@@ -58,8 +58,7 @@ button:hover { background:#1b5e20; }
       <footer>
     <p>&copy; 2026 myPharmacy.</p>
   </footer>
-
-<script>
+  <script>
 document.querySelector("#invoice form").addEventListener("submit", function(e) {
   e.preventDefault();
   const table = document.querySelector("#invoice table tbody");
@@ -76,3 +75,4 @@ document.querySelector("#invoice form").addEventListener("submit", function(e) {
 </script>
 </body>
 </html>
+
