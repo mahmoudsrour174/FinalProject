@@ -1,27 +1,19 @@
 <?php
-session_start();
-include "db.php";
+include "db.php"; 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username=? AND password=?");
+    $stmt->bind_param("ss", $username, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    $sql = "SELECT * FROM employees WHERE username='$username' AND password='$password'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $_SESSION['user'] = $username;
-
-        echo " Login successful!<br><br>";
-        echo "Welcome, " . $username . "<br>";
-        echo "<a href='index.html'>Go Back</a>";
-
+   if ($result->num_rows > 0) {
+        header("Location: drugs.html");
+        exit();
     } else {
-        echo " Invalid username or password<br><br>";
-        echo "<a href='index.html'>Try Again</a>";
+        echo "Invalid username or password.";
     }
 }
-
-$conn->close();
 ?>
