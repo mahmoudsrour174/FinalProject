@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pharmacy/drugs</title>
+</head>
+<style>
+   
+
+
+header, footer {
+  background: #2e7d32;  
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+aside {
+  width: 180px;
+  background: #f0f0f0;
+  float: left;
+  height: 100vh;
+  padding: 10px;
+}
+
+aside nav a {
+  display: block;
+  padding: 6px;
+  margin: 4px 0;
+  text-decoration: none;
+  color: #2e7d32;
+}
+
+aside nav a:hover {
+  background: #c8e6c9;
+}
+
+main {
+  margin-left: 200px;
+  padding: 15px;
+}
+
+h2 {
+  color: #1b5e20;
+}
+
+form label {
+  display: inline-block;
+  width: 140px;
+  font-weight: bold;
+}
+
+input, textarea, button {
+  margin: 5px 0;
+  padding: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: left;
+}
+
+button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  
+}
+
+button:hover {
+  background: #1b5e20;
+}
+</style>
+<body>
+    
+  <header>
+        <h1>Pharmacy Management System</h1>
+    </header>
+   <aside>
+  <nav>
+    <a href="drugs.html">Drugs</a>
+    <a href="suppliers.html">Suppliers</a>
+    <a href="employees.html">Employees</a>
+    <a href="invoices.html">Invoices</a>
+    <a href="patients.html">Patients</a>
+    <a href="diseases.html">Diseases</a>
+    <a href="insurance.html">Insurance</a>
+  </nav>
+</aside>
+    <main>
+  
+  <main>
+    <section id="drug">
+      <h2>Drug Management</h2>
+      <form action="addDrug.php" method="post">
+        <label>Name</label><input type="text" name="name"><br><br>
+        <label>Barcode</label><input type="text" name="barcode"><br><br>
+        <label>Sell Price</label><input type="number" name="sell_price"><br><br>
+        <label>Cost Price</label><input type="number" name="cost_price"><br><br>
+        <label>Quantity</label><input type="number" name="quantity"><br><br>
+        <label>Scientific Name</label><input type="text" name="scientific_name"><br><br>
+        <label>Production Date</label><input type="date" name="production_date"><br><br>
+        <label>Expiry</label><input type="date" name="expiry"><br><br>
+        <label>Store Condition</label><input type="text" name="store_condition"><br><br>
+        <label>Active Ingredient</label><input type="text" name="active_ingredient"><br><br>
+        <label>Drug Interactions</label><textarea name="drug_interactions"></textarea><br><br>
+        <button type="submit">Add Drug</button>
+      </form>
+
+      <h3>Drug List</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th><th>Barcode</th><th>Sell Price</th><th>Cost Price</th>
+            <th>Quantity</th><th>Expiry</th><th>Active Ingredient</th><th>Interactions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    
+    <section id="reports">
+      <h2>Reports and Statistics</h2>
+      <p>Total Items:</p>
+      <p>Total Quantity:</p>
+      <p>Expired:</p>
+      <p>Expire Soon:</p>
+
+      <h3>Expiry Alerts</h3>
+      <table>
+        <thead>
+          <tr><th>Medicine</th><th>Quantity</th><th>Expiry Date</th><th>Status</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2026 myPharmacy.</p>
+  </footer>
+  <script>
+document.querySelector("#drug form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const table = document.querySelector("#drug table tbody");
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${this.name.value}</td>
+    <td>${this.barcode.value}</td>
+    <td>${this.sell_price.value}</td>
+    <td>${this.cost_price.value}</td>
+    <td>${this.quantity.value}</td>
+    <td>${this.expiry.value}</td>
+    <td>${this.active_ingredient.value}</td>
+    <td>${this.drug_interactions.value}</td>
+  `;
+  table.appendChild(row);
+  this.reset();
+});
+</script>
+</body>
+</html>
+
